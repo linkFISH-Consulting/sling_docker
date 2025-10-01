@@ -1,0 +1,14 @@
+# make a copy of this as replication.yml
+# this will get mounted into the container and used for the ingestion.
+
+source: SLING_SRC_DB
+target: LOCAL
+
+defaults:
+  target_options:
+    format: parquet
+
+streams:
+  raw_wwi.Invoices:
+    object: file:///data/invoices.parquet
+

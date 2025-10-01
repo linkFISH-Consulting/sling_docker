@@ -1,0 +1,11 @@
+source: SLING_SRC_DB
+target: LOCAL
+
+defaults:
+  target_options:
+    format: parquet
+
+streams:
+  raw_wwi.Invoices:
+    object: file:///data/invoices.parquet
+
