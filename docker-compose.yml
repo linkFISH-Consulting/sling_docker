@@ -2,13 +2,14 @@ name: lf_sling
 
 services:
   sling:
-    image: slingdata/sling:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: sling
     environment:
-      - SLING_SRC_DB=${SLING_SRC_DB} # use docker compose run -e SLING_SRC_DB=value
+      - SLING_SRC_DB=${SLING_SRC_DB}
     volumes:
       - ./entrypoint.sh:/app/entrypoint.sh
-      - ./replication.yml:/app/replication.yml
-      - ./data/:/data/
-      - ./duckdb/:/home/sling/.duckdb/
-    entrypoint: ["/bin/bash", "/app/entrypoint.sh"]
+      - ${SLING_REPLICATION_PATH:-./replication.yml}:/app/replication.yml
+      - ${SLING_OUTPUT_DIR:-./data/}:/data/
+    entrypoint: ["tail", "-f", "/dev/null"]

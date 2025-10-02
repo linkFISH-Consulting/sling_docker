@@ -2,7 +2,6 @@
 
 # Sling Docker Runner Script
 
-
 set -e
 
 # Use provided SRC_DB or default
@@ -24,7 +23,7 @@ if [ $# -eq 0 ]; then
     echo ""
     echo "Examples:"
     echo "  $0 discover"
-    echo "  $0 ingest my_source my_target"
+    echo "  $0 ingest"
     echo ""
     echo "Environment variables:"
     echo "  SLING_SRC_DB - Source database connection string"
@@ -55,4 +54,4 @@ esac
 echo "Sling operation completed successfully!"
 
 # do not shut down the container
-tail -f /dev/null
+# tail -f /dev/null
