@@ -1,5 +1,11 @@
-
 FROM slingdata/sling:latest
+
+ARG UID=1000
+ARG GID=1000
+
+# Set UID and GID for sling user
+USER root
+RUN groupmod -g $GID sling && usermod -u $UID -g $GID sling
 
 WORKDIR /app
 

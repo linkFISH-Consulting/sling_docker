@@ -5,6 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        UID: 1000
+        GID: 1000
     container_name: sling
     environment:
       - SLING_SRC_DB=${SLING_SRC_DB}
